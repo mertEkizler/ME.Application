@@ -1,4 +1,5 @@
 ﻿using ME.Application.WebApi.Data.Context;
+using ME.Application.WebApi.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,7 @@ namespace ME.Application.WebApi.Controllers
 
         public IActionResult Index()
         {
-            return View(_context.ApplicationUsers.ToList());
+            return View(_context.ApplicationUsers.Select(x=> new UserListModel { Id=x.Id, Name=x.Name, Surname=x.Surname }).ToList());
         }
     }
 }
